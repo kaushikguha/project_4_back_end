@@ -2,8 +2,8 @@ from peewee import *
 import datetime
 from flask_login import UserMixin
 
-DATABASE=SqliteDatabase('pmt.sqlite')
-# DATABASE=PostgresqlDatabase('pmt', user='kguha')
+# DATABASE=SqliteDatabase('pmt.sqlite')
+DATABASE=PostgresqlDatabase('pmt', user='kguha')
 
 #Our Model
 class User(UserMixin, Model):
