@@ -7,10 +7,9 @@ DATABASE=SqliteDatabase('pmt.sqlite')
 
 #Our Model
 class User(UserMixin, Model):
-    ssn = CharField(max_length=12, unique=True)
+    ssn = CharField(max_length=9, unique=True)
     first_name= CharField()
     last_name= CharField()
-    # joined_date= DateField()
     email=CharField(unique=True)
     username= CharField(unique=True)
     password=CharField()
@@ -22,7 +21,7 @@ class User(UserMixin, Model):
 
 class Pmt(Model):
     ssn= ForeignKeyField(User, backref='my_pmt')
-    # pmt_date= DateField()
+    pmt_date= CharField()
     amt_paid= CharField()
 
     class Meta:

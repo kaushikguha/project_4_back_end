@@ -3,7 +3,7 @@ import models
 from flask import Blueprint, request, jsonify
 from flask_bcrypt import generate_password_hash, check_password_hash
 from playhouse.shortcuts import model_to_dict
-from flask_login import login_user, logout_user
+from flask_login import login_user, logout_user, current_user, login_required
 
 users=Blueprint('users', 'users')
 
@@ -98,12 +98,35 @@ def login():
 
 #logout route
 @users.route('/logout', methods=['GET'])
-
 def logout():
+    print("hitting the logout route")
     logout_user()
     return jsonify(
         data={},
         status=200,
         message='User Successfully logged out'
-
         )
+
+###### Check to see if user is logged in (GET)
+
+
+@users.route('/userloggedin', methods=['GET'])
+def user_loggedin():
+
+    try:
+        users=current_user.username
+        print("")
+        print('result of user logged in query')
+        print(users)
+        return jsonify(
+            data=users,
+            message=f'Succefffully found {users} logged in',
+            status=200
+        ),200
+
+    except:
+        print('No one is logged in')
+        return jsonify(
+            message='No one is logged in',
+            status=500
+        ), 500

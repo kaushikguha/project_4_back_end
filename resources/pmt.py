@@ -14,11 +14,6 @@ pmt= Blueprint('pmt', 'pmt')
 @pmt.route('/', methods=['GET'])
 def pmt_index():
 
-    # print (current_user.email)
-    # print (current_user.username)
-    # print (current_user.password)
-
-    # result=models.Dog.select()
 
     print("")
     print('result of pmt select query')
@@ -42,8 +37,8 @@ def pmt_index():
 
 def create_pmt():
     payload =request.get_json()
-    # print (payload)
-    new_pmt = models.Pmt.create( ssn=current_user.id, amt_paid=payload['amt_paid'])#pmt_date=payload['pmt_date'],
+    print (payload)
+    new_pmt = models.Pmt.create( ssn=current_user.id, amt_paid=payload['amt_paid'], pmt_date=payload['pmt_date'])
     print(new_pmt)
     # print(new_dog.__dict__)
     # print(dir(new_dog))
