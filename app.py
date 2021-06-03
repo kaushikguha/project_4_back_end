@@ -35,8 +35,8 @@ def load_user(user_id):
 
 
 
-CORS(pmt, origins=['http://localhost:3000'], supports_credentials=True)
-CORS(users, origins=['http://localhost:3000'], supports_credentials=True)
+CORS(pmt, origins=['https://employeedb-fe-app.herokuapp.com'], supports_credentials=True)
+CORS(users, origins=['https://employeedb-fe-app.herokuapp.com'], supports_credentials=True)
 
 app.register_blueprint(pmt, url_prefix='/api/v1/pmt')
 app.register_blueprint(users, url_prefix='/api/v1/users')
