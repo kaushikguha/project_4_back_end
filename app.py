@@ -22,6 +22,11 @@ PORT=8002
 
 app = Flask(__name__)
 
+app.config.update(
+  SESSION_COOKIE_SECURE=True,
+  SESSION_COOKIE_SAMESITE='None'
+)
+
 app.secret_key = os.environ.get("FLASK_APP_SECRET")
 print(os.environ.get("FLASK_APP_SECRET"))
 
@@ -37,6 +42,10 @@ def load_user(user_id):
 
 CORS(pmt, origins=['https://employeedb-fe-app.herokuapp.com'], supports_credentials=True)
 CORS(users, origins=['https://employeedb-fe-app.herokuapp.com'], supports_credentials=True)
+# CORS(pmt, origins=['http://localhost:3000'], supports_credentials=True)
+# CORS(users, origins=['http://localhost:3000'], supports_credentials=True)
+
+
 
 app.register_blueprint(pmt, url_prefix='/api/v1/pmt')
 app.register_blueprint(users, url_prefix='/api/v1/users')
